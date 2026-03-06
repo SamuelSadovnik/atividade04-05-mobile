@@ -11,8 +11,6 @@ class ProductRemoteDatasource {
       "https://fakestoreapi.com/products",
     );
     final List data = response.data;
-    return data
-        .map((json) => ProductModel.fromJson(json))
-        .toList();
+    return data.map((json) => ProductModel.fromJson(json)).toList();
   }
 }
