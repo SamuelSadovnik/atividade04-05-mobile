@@ -1,16 +1,11 @@
-# product_app
 
-A new Flutter project.
 
-## Getting Started
+Reflexao do professor, questoes:
 
-This project is a starting point for a Flutter application.
+O cache foi implementado na camada de dados, dentro do repositório. Isso faz sentido porque o repositório é o responsável por decidir de onde os dados vêm, seja da API remota ou de uma fonte local. Colocar o cache ali mantém essa lógica isolada, sem vazar para outras camadas.
 
-A few resources to get you started if this is your first Flutter project:
+O ViewModel não realiza chamadas HTTP diretamente porque ele não deve saber como os dados são obtidos. Essa é a responsabilidade do repositório. O ViewModel só coordena o estado da tela, e se ele fizesse chamadas HTTP diretamente, ia misturar responsabilidades que não são dele, tornando o código mais difícil de manter e testar.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Se a interface acessasse diretamente o datasource, ela estaria acoplada a um detalhe de implementação que pode mudar a qualquer momento. Além disso, a lógica de cache e tratamento de erros teria que ser duplicada na própria UI, o que vai contra a ideia de separação de responsabilidades.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Essa arquitetura facilita muito a substituição da API por um banco de dados local porque a interface e o ViewModel dependem apenas da abstração do repositório. Para trocar a fonte de dados, bastaria criar uma nova implementação de `ProductRepository` que lê de um banco local, sem precisar alterar nada na interface ou no ViewModel.
