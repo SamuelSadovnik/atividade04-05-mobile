@@ -14,7 +14,8 @@ class ProductPage extends ConsumerWidget {
       appBar: AppBar(title: const Text("Produtos")),
       body: _buildBody(context, ref, state),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => ref.read(productViewModelProvider.notifier).loadProducts(),
+        onPressed: () =>
+            ref.read(productViewModelProvider.notifier).loadProducts(),
         child: const Icon(Icons.download),
       ),
     );
@@ -74,7 +75,9 @@ class ProductPage extends ConsumerWidget {
           subtitle: Text('R\$ ${product.price.toStringAsFixed(2)}'),
           trailing: IconButton(
             onPressed: () {
-              ref.read(productViewModelProvider.notifier).toggleFavorite(product.id);
+              ref
+                  .read(productViewModelProvider.notifier)
+                  .toggleFavorite(product.id);
             },
             icon: Icon(
               product.favorite ? Icons.star : Icons.star_border,

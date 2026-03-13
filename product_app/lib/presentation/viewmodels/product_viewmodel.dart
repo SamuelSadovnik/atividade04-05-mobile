@@ -11,7 +11,8 @@ final httpClientProvider = Provider<HttpClient>((ref) {
   return HttpClient();
 });
 
-final productRemoteDatasourceProvider = Provider<ProductRemoteDatasource>((ref) {
+final productRemoteDatasourceProvider =
+    Provider<ProductRemoteDatasource>((ref) {
   return ProductRemoteDatasource(ref.read(httpClientProvider));
 });
 
