@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:product_app/presentation/pages/product_details_page.dart';
 import 'package:product_app/presentation/viewmodels/product_state.dart';
 import 'package:product_app/presentation/viewmodels/product_viewmodel.dart';
 
@@ -39,6 +40,14 @@ class ProductPage extends ConsumerWidget {
       itemBuilder: (context, index) {
         final product = state.products[index];
         return ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ProductDetailsPage(product: product),
+              ),
+            );
+          },
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
