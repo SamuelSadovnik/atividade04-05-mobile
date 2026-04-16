@@ -57,7 +57,8 @@ class ProductFormFields extends StatelessWidget {
         const SizedBox(height: 12),
         TextFormField(
           controller: imageController,
-          decoration: const InputDecoration(labelText: 'URL da imagem (opcional)'),
+          decoration:
+              const InputDecoration(labelText: 'URL da imagem (opcional)'),
         ),
       ],
     );
